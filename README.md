@@ -21,8 +21,14 @@ All figures are scripted examples, not measured financial results. No current en
 4. Click PLAY NARRATED DEMO. Narration advances only after the current script finishes. PAUSE, RESUME, STOP, REPLAY, RESTART, MUTE and MANUAL MODE remain available. Eight minutes is a target, never a cutoff.
 5. If audio is unavailable, use BACK/NEXT and read WHAT TO SAY or the text transcript.
 
-Browser speech may be handled by an OS network service only after explicit consent to a network-capable voice. No external TTS API is integrated. Page network requests are blocked by its content security policy; browser/OS speech operates separately. Native ChromeOS audio, native mobile layout and screen-reader acceptance still require a real-device check.
+Browser speech may be handled by an OS network service only after explicit consent to a network-capable voice. No external TTS API is integrated. External page requests remain blocked by its content security policy; local poster images and videos are allowed, and browser/OS speech operates separately. Native ChromeOS audio, native mobile layout and screen-reader acceptance still require a real-device check.
 
 ## Static hosting
 
 The folder can be served as ordinary static HTML, JavaScript and CSS with relative paths. No server-side application, special rewrites or environment variables are required. Prefer HTTPS and preserve the page's restrictive content security policy. Disable directory listing, analytics injection and third-party scripts. Do not combine this folder with platform source or private documents. Static-host headers and actual browser rendering must be verified after an authorized preview; no hosted URL is claimed here.
+
+## Recorded pilot demos
+
+The home page includes Construction BPO and ServiceNow L1 recordings copied unchanged from `~/wt-hc-legal/html/demo/v2/`, with posters extracted at 12 seconds, two-sentence captions and inline native playback controls. Both are synthetic local walkthroughs; the Healthcare card is coming-soon text only. “Request a pilot” opens a new request in this repository’s GitHub issues because no email or booking destination is configured.
+
+Chromium verification at 1280 and 390 px: 37 checks passed, including real playback advancement for both videos at each width, posters, no horizontal overflow, placeholder limits and existing next-step navigation. Both layouts were visually inspected; zero page errors, console/CSP errors or external asset requests.
