@@ -1,88 +1,83 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="claude:viewport-fit-sides" content="cover"><title>Music Song Builder Manual</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;600&family=Sora:wght@600;700&display=swap"><style>
-/* Layout: control-room ledger. One column of record cards; each app is a docket with status, cures, buyers, three exits. */
-:root{
-  --bg:#f3f5f4; --surface:#ffffff; --ink:#14201c; --muted:#5a6a64; --line:#d6dfdb;
-  --accent:#0f6b52; --accent-ink:#ffffff; --brass:#9a6a12; --live:#137a3e; --live-bg:#e2f3e8;
-  --warn-bg:#fbf1dc; --warn:#7a5208;
-  --display:"Sora",ui-sans-serif,system-ui,sans-serif;
-  --body:"IBM Plex Sans",ui-sans-serif,system-ui,sans-serif;
-  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
-}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --bg:#0f1614; --surface:#16201d; --ink:#e4ece8; --muted:#97a8a1; --line:#2a3833;
-  --accent:#4fc39b; --accent-ink:#06120e; --brass:#e0b45a; --live:#5fd18f; --live-bg:#163326;
-  --warn-bg:#33280f; --warn:#f0c56a; color-scheme:dark}}
-:root[data-theme="dark"]{
-  --bg:#0f1614; --surface:#16201d; --ink:#e4ece8; --muted:#97a8a1; --line:#2a3833;
-  --accent:#4fc39b; --accent-ink:#06120e; --brass:#e0b45a; --live:#5fd18f; --live-bg:#163326;
-  --warn-bg:#33280f; --warn:#f0c56a; color-scheme:dark}
-*{box-sizing:border-box}
-body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.55;
-  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 56px}
-.wrap{max-width:1080px;margin:0 auto;display:grid;gap:28px}
-h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;letter-spacing:-.01em}
-h1{font-size:clamp(1.7rem,4vw,2.4rem);line-height:1.15}
-h2{font-size:1.25rem}
-h3{font-size:1rem}
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Music Song Builder · Operating manual</title><meta name="description" content="Operating manual"><style>
+:root{--bg:#f6f7fb;--surface:#ffffff;--surface2:#eef1f8;--ink:#121726;--muted:#5b6478;--line:#dde2ee;--a:#5b3fd9;--a-ink:#ffffff;--ok:#0d8a5b;--warn:#9a5b00;--bad:#b42335;
+ --shadow:0 18px 50px rgba(18,23,38,.10);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#070a12;--surface:#0f1524;--surface2:#141c2e;--ink:#eef2fb;--muted:#97a3bd;--line:#223049;--a-ink:#05070d;--ok:#2ee59d;--warn:#ffb547;--bad:#ff8a8a;--shadow:0 30px 80px rgba(0,0,0,.45);color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#070a12;--surface:#0f1524;--surface2:#141c2e;--ink:#eef2fb;--muted:#97a3bd;--line:#223049;--a-ink:#05070d;--ok:#2ee59d;--warn:#ffb547;--bad:#ff8a8a;--shadow:0 30px 80px rgba(0,0,0,.45);color-scheme:dark}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+a{color:var(--a)}a:focus-visible,button:focus-visible,video:focus-visible{outline:3px solid var(--a);outline-offset:3px}
+.wrap{max-width:1160px;margin:0 auto;padding:0 max(16px,env(safe-area-inset-left))}
+.nav{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:18px 0;font-size:.85rem;color:var(--muted)}
+.nav a{text-decoration:none;color:var(--muted)}.nav b{color:var(--ink)}
+.brand{display:flex;gap:10px;align-items:center;font-weight:700;letter-spacing:.08em}
+.mark{width:30px;height:30px;border-radius:9px;background:var(--a);color:var(--a-ink);display:grid;place-items:center;font-weight:900;font-size:.8rem;letter-spacing:0}
+h1,h2,h3{line-height:1.12;letter-spacing:-.02em;margin:0;text-wrap:balance}
+h1{font-size:clamp(2rem,5.2vw,3.6rem);font-weight:850}
+h2{font-size:clamp(1.4rem,3vw,2rem);font-weight:800}
+h3{font-size:1.05rem;font-weight:750}
 p{margin:0}
-a{color:var(--accent)}
-a:focus-visible,button:focus-visible{outline:2px solid var(--brass);outline-offset:2px}
-.eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
-.lede{color:var(--muted);max-width:68ch}
-header.top{display:grid;gap:10px}
-.stats{display:flex;flex-wrap:wrap;gap:8px 18px;font-family:var(--mono);font-size:.8rem;color:var(--muted)}
-.stats b{color:var(--ink);font-variant-numeric:tabular-nums}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,330px),1fr));gap:16px}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px;display:grid;gap:12px;grid-template-rows:auto auto 1fr auto;min-width:0}
-.card .head{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
-.pill{font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:999px;white-space:nowrap;background:var(--live-bg);color:var(--live)}
-.pill.build{background:var(--warn-bg);color:var(--warn)}
-.sector{font-family:var(--mono);font-size:.7rem;color:var(--brass);letter-spacing:.06em;text-transform:uppercase}
-.card p.sum{color:var(--muted);font-size:.92rem}
-.block{display:grid;gap:6px}
-.block .lbl{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
-ul.cures{margin:0;padding-left:1.1em;display:grid;gap:4px;font-size:.92rem}
-.clients{font-size:.88rem}
-.links{display:flex;flex-wrap:wrap;gap:8px;padding-top:4px;border-top:1px solid var(--line)}
-.btn{display:inline-flex;align-items:center;gap:6px;text-decoration:none;font-size:.85rem;font-weight:600;padding:7px 11px;border-radius:7px;border:1px solid var(--line);color:var(--ink);background:transparent}
-.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
-.btn:hover{border-color:var(--accent)}
-.note{background:var(--warn-bg);color:var(--warn);border-radius:8px;padding:10px 12px;font-size:.85rem}
-.price{font-family:var(--mono);font-size:.82rem;font-variant-numeric:tabular-nums}
-footer{color:var(--muted);font-size:.82rem;display:grid;gap:6px;border-top:1px solid var(--line);padding-top:16px}
-code,.mono{font-family:var(--mono);font-size:.85em}
-/* doc pages */
-.doc{max-width:760px;margin:0 auto;display:grid;gap:22px}
-.doc section{display:grid;gap:8px}
-.doc ul,.doc ol{margin:0;padding-left:1.2em;display:grid;gap:5px}
-.back{font-size:.85rem;text-decoration:none}
-.meta{display:flex;flex-wrap:wrap;gap:8px 16px;font-family:var(--mono);font-size:.78rem;color:var(--muted)}
-.tablewrap{overflow-x:auto}
-table{border-collapse:collapse;width:100%;font-size:.9rem}
-th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
-th{font-family:var(--mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
-.copy{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
-.copy button{font:inherit;font-size:.8rem;padding:4px 9px;border-radius:6px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
-@media (prefers-reduced-motion:reduce){*{transition:none!important}}
-</style></head><body><div class="doc"><a class="back" href="index.html">← All pilots</a>
-<header class="block"><span class="eyebrow">Employee manual · Creative education</span><h1>Running Music Song Builder</h1>
-<div class="meta"><span>Pilot: <a href="https://tsm-music-synthetic-preview-tsm-music-pilot.up.railway.app" target="_blank" rel="noopener">tsm-music-synthetic-preview-tsm-music-pilot.up.railway.app</a></span></div></header>
-<section><h2>Before you start</h2><ul>
-<li>Get your access-gate login and your role account from the owner. Never share them or paste them into email or chat.</li>
-<li>Open the pilot link. Enter the gate username and password in the browser pop-up, then sign in with your role account.</li>
-<li>Use synthetic or owner-supplied data only.</li></ul></section>
-<section><h2>Roles</h2><div class="tablewrap"><table><thead><tr><th>Role</th><th>What they do</th></tr></thead><tbody><tr><td>Artist</td><td>Writes with Co-write, saves drafts, prints the Take Sheet</td></tr><tr><td>Reviewer</td><td>Reads drafts and coaching notes</td></tr></tbody></table></div>
-<p>A different person should review than prepared the work. When the owner is the only operator, the system records the reason code OWNER_SOLE_OPERATOR and discloses it on the report.</p></section>
-<section><h2>Daily workflow</h2><ol><li>Sign in as the artist; the latest saved song opens.</li><li>Walk the 8 steps; use Co-write when stuck and Keep, Edit or Try again.</li><li>Watch the song build in &#x27;Your song so far&#x27;.</li><li>Open Coach my draft to plan delivery over the practice beat.</li><li>Save, then print the song or Take Sheet for the session.</li></ol></section>
-<section><h2>Weekly review</h2><ul><li>Open the weekly-review Copilot where available. It is read-only and never approves or publishes.</li><li>Check open items, returned work and anything listed as unassessed.</li><li>Use View audit events to confirm who did what.</li></ul></section>
-<section><h2>Limits you must respect</h2><ul><li>Original lines only: no named-artist imitation or lyric copying.</li><li>Drafts are for the artist&#x27;s own use; no music licensing or distribution claims.</li><li>Synthetic or owner-supplied audio only.</li></ul></section>
-<section><h2>Troubleshooting</h2><ul>
-<li><b>Gate pop-up keeps returning:</b> the gate login was mistyped. Copy it again with nothing before or after it.</li>
-<li><b>Sent back to the sign-in page:</b> the account password was wrong. Several failed tries lock the account briefly; wait a few minutes or use another role.</li>
-<li><b>Client sees no reports:</b> nothing has been published yet. Clients only see approved, published reports.</li>
-<li><b>Anything else:</b> contact the owner at <span class="mono">torreyw94@tsmatter.com</span>.</li></ul></section>
-<a class="back" href="music-summary.html">← Executive summary</a></div><script>
-document.querySelectorAll('[data-copy]').forEach(b=>b.addEventListener('click',()=>{const t=b.getAttribute('data-copy');
-navigator.clipboard.writeText(t).then(()=>{b.textContent='Copied'}).catch(()=>{const r=document.createRange();r.selectNodeContents(b.previousElementSibling);const s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent='Selected'});}));
+.eyebrow{font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--a)}
+.lede{font-size:clamp(1.02rem,2vw,1.2rem);color:var(--muted);max-width:62ch}
+.hero{display:grid;gap:18px;padding:34px 0 26px}
+.ctas{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
+.btn{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:700;font-size:.92rem;padding:11px 16px;border-radius:10px;border:1px solid var(--line);color:var(--ink);background:var(--surface)}
+.btn.primary{background:var(--a);border-color:var(--a);color:var(--a-ink)}
+.btn:hover{border-color:var(--a)}
+.btn.sm{font-size:.82rem;padding:8px 12px}
+.video{position:relative;border-radius:18px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow);background:#070a12;aspect-ratio:16/9}
+.video video{display:block;width:100%;height:100%}
+.vmeta{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:.82rem;color:var(--muted);margin-top:10px}
+section{padding:34px 0;border-top:1px solid var(--line);display:grid;gap:18px}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:14px}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;display:grid;gap:8px;align-content:start}
+.box .n{font-size:.72rem;letter-spacing:.16em;font-weight:800;color:var(--muted)}
+.box.bad{border-left:4px solid var(--bad)}.box.bad .n{color:var(--bad)}
+.box.good{border-left:4px solid var(--a)}.box.good .n{color:var(--a)}
+ul.ticks{list-style:none;padding:0;margin:0;display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))}
+ul.ticks li{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px 12px 44px;position:relative}
+ul.ticks li::before{content:'✓';position:absolute;left:14px;top:11px;width:20px;height:20px;border-radius:6px;display:grid;place-items:center;font-size:.75rem;font-weight:900;background:color-mix(in srgb,var(--a) 18%,transparent);color:var(--a)}
+ol.steps{list-style:none;margin:0;padding:0;display:grid;gap:10px;counter-reset:s}
+ol.steps li{counter-increment:s;display:grid;grid-template-columns:40px 1fr;gap:14px;align-items:start;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px}
+ol.steps li::before{content:counter(s);width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:var(--a);color:var(--a-ink);font-weight:850}
+.role{display:inline-block;font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:2px}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:18px;align-items:start}
+.kv{display:grid;gap:8px}.kv div{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid var(--line);font-size:.92rem}.kv b{text-align:right}
+.note{background:var(--surface2);border:1px solid var(--line);border-radius:12px;padding:14px 16px;font-size:.9rem;color:var(--muted)}
+.tag{display:inline-block;font-size:.7rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:4px 9px;border-radius:999px;background:color-mix(in srgb,var(--ok) 16%,transparent);color:var(--ok)}
+.tag.build{background:color-mix(in srgb,var(--warn) 16%,transparent);color:var(--warn)}
+footer{padding:30px 0 50px;color:var(--muted);font-size:.82rem;border-top:1px solid var(--line);display:grid;gap:6px}
+/* index */
+.feature{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:24px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:22px;box-shadow:var(--shadow)}
+.apps{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,330px),1fr));gap:16px}
+.app{background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:grid;grid-template-rows:auto 1fr;min-width:0}
+.app img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;background:#070a12}
+.app .in{padding:16px;display:grid;gap:10px;align-content:start}
+.app .sector{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;font-weight:800;color:var(--muted)}
+.app p{font-size:.92rem;color:var(--muted)}
+.app .links{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.thumb{position:relative;display:block}.thumb::after{content:'▶';position:absolute;inset:auto auto 12px 12px;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:rgba(5,7,13,.75);color:#fff;font-size:.9rem;padding-left:3px}
+/* script page */
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:.9rem;min-width:620px}
+th,td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+td.t{font-variant-numeric:tabular-nums;color:var(--muted);white-space:nowrap}
+.copy{font:inherit;font-size:.8rem;font-weight:700;padding:7px 11px;border-radius:8px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+/* print: summary is a one-pager */
+@media print{:root{--bg:#fff;--surface:#fff;--ink:#000;--muted:#333;--line:#ccc}.nav,.ctas,.noprint,video{display:none!important}body{font-size:11.5px}section{padding:12px 0}.hero{padding:6px 0}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style><style>:root{--a:#00ff88}@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--a:color-mix(in srgb,#00ff88 78%,#000)}}</style></head>
+<body><div class="wrap"><nav class="nav"><a class="brand" href="index.html"><span class="mark" aria-hidden="true">T</span><span><b>TSM</b> Intelligence Platform</span></a><span>Operating manual</span></nav>
+<header class="hero"><div class="eyebrow">Employee operating manual</div><h1>Running Music Song Builder</h1><p class="lede">How each role uses the app every day, step by step.</p></header>
+<section><h2>Roles</h2><div class="tablewrap"><table><thead><tr><th>Role</th><th>What they do</th></tr></thead><tbody><tr><td><b>Artist</b></td><td>Writes with Co-write, saves drafts, prints the Take Sheet</td></tr><tr><td><b>Reviewer</b></td><td>Reads drafts and coaching notes</td></tr></tbody></table></div></section>
+<section><h2>Daily flow</h2><ol class="steps"><li><div><span class="role">Artist</span><h3>Your latest song</h3><p>Sign in as the artist; the latest saved song opens.</p></div></li><li><div><span class="role">Artist</span><h3>Co-write</h3><p>Walk the 8 steps; use Co-write when stuck and Keep, Edit or Try again.</p></div></li><li><div><span class="role">Artist</span><h3>Your song so far</h3><p>Watch the song build in &#x27;Your song so far&#x27;.</p></div></li><li><div><span class="role">Artist</span><h3>Coach my draft</h3><p>Open Coach my draft to plan delivery over the practice beat.</p></div></li><li><div><span class="role">Artist</span><h3>Take Sheet</h3><p>Save, then print the song or Take Sheet for the session.</p></div></li></ol></section>
+<section class="two"><div class="box"><span class="n">BEFORE YOU START</span><p>Sign in with your own pilot account; never share accounts.</p><p>Use only synthetic or approved sample data during the pilot.</p><p>Keep the app's gate and account passwords out of email and chat.</p></div>
+<div class="box"><span class="n">BOUNDARIES</span><p>Original lines only: no named-artist imitation or lyric copying.</p><p>Drafts are for the artist&#x27;s own use; no music licensing or distribution claims.</p><p>Synthetic or owner-supplied audio only.</p></div></section>
+<section><div class="ctas"><a class="btn sm" href="music.html">App page</a><a class="btn sm" href="music.html#demo">▶ Watch demo</a><a class="btn sm" href="music-summary.html">Executive summary</a><a class="btn sm" href="music-script.html">Presenter script &amp; guide</a></div></section>
+<footer><p>All demo data is synthetic. No real client records, outcomes or endorsements are shown. Every pilot keeps people in charge: results are reviewed before release.</p>
+<p>Narration voice: Piper LibriTTS (CC BY 4.0, openslr.org/60). Contact: <a href="mailto:torreyw94@tsmatter.com">torreyw94@tsmatter.com</a></p></footer></div><script>
+document.addEventListener('click',async e=>{const b=e.target.closest('[data-copy]');if(!b)return;
+ const el=document.getElementById(b.dataset.copy);try{await navigator.clipboard.writeText(el.innerText);b.textContent='Copied';}catch{b.textContent='Select and copy';}
+ setTimeout(()=>b.textContent='Copy script',1600);});
 </script></body></html>

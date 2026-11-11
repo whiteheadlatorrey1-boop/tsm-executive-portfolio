@@ -35,4 +35,12 @@ Chromium verification at 1280 and 390 px: 37 checks passed, including real playb
 
 ## Pilot apps portfolio
 
-`pilots/index.html` lists every TSM Intelligence Platform pilot app (BPO Services first), with capabilities, the business pain points each one cures, best-fit clients, live pilot links, a one-page executive summary (`<slug>-summary.html`) and an employee operating manual (`<slug>-manual.html`). The home page links to it from the intro bar. Pilot links open gated hosted pilots that need separately issued test credentials; all pilot data is synthetic.
+`pilots/index.html` leads with BPO Services, then every TSM pilot app. Each app has:
+
+- `<slug>.html` marketing page: the problem, immediate business value, capabilities, end-to-end walkthrough, safeguards and the narrated demo video
+- `<slug>-summary.html` one-page executive summary (print / save as PDF)
+- `<slug>-manual.html` employee operating manual
+- `<slug>-script.html` presenter script (timed, copyable) and live-demo guide
+- `videos/<slug>-demo.mp4` (1920×1080, captions burnt in, narrated) and poster
+
+All demo data is synthetic. Narration voice: Piper LibriTTS (CC BY 4.0, http://www.openslr.org/60/), generated locally; no model weights are distributed here.
