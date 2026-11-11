@@ -1,0 +1,184 @@
+<title>TSM Pilot Portfolio</title><meta name="claude:viewport-fit-sides" content="cover"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;600&family=Sora:wght@600;700&display=swap"><style>
+/* Layout: control-room ledger. One column of record cards; each app is a docket with status, cures, buyers, three exits. */
+:root{
+  --bg:#f3f5f4; --surface:#ffffff; --ink:#14201c; --muted:#5a6a64; --line:#d6dfdb;
+  --accent:#0f6b52; --accent-ink:#ffffff; --brass:#9a6a12; --live:#137a3e; --live-bg:#e2f3e8;
+  --warn-bg:#fbf1dc; --warn:#7a5208;
+  --display:"Sora",ui-sans-serif,system-ui,sans-serif;
+  --body:"IBM Plex Sans",ui-sans-serif,system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0f1614; --surface:#16201d; --ink:#e4ece8; --muted:#97a8a1; --line:#2a3833;
+  --accent:#4fc39b; --accent-ink:#06120e; --brass:#e0b45a; --live:#5fd18f; --live-bg:#163326;
+  --warn-bg:#33280f; --warn:#f0c56a; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f1614; --surface:#16201d; --ink:#e4ece8; --muted:#97a8a1; --line:#2a3833;
+  --accent:#4fc39b; --accent-ink:#06120e; --brass:#e0b45a; --live:#5fd18f; --live-bg:#163326;
+  --warn-bg:#33280f; --warn:#f0c56a; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.55;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 56px}
+.wrap{max-width:1080px;margin:0 auto;display:grid;gap:28px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;letter-spacing:-.01em}
+h1{font-size:clamp(1.7rem,4vw,2.4rem);line-height:1.15}
+h2{font-size:1.25rem}
+h3{font-size:1rem}
+p{margin:0}
+a{color:var(--accent)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--brass);outline-offset:2px}
+.eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.lede{color:var(--muted);max-width:68ch}
+header.top{display:grid;gap:10px}
+.stats{display:flex;flex-wrap:wrap;gap:8px 18px;font-family:var(--mono);font-size:.8rem;color:var(--muted)}
+.stats b{color:var(--ink);font-variant-numeric:tabular-nums}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,330px),1fr));gap:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px;display:grid;gap:12px;grid-template-rows:auto auto 1fr auto;min-width:0}
+.card .head{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.pill{font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:999px;white-space:nowrap;background:var(--live-bg);color:var(--live)}
+.pill.build{background:var(--warn-bg);color:var(--warn)}
+.sector{font-family:var(--mono);font-size:.7rem;color:var(--brass);letter-spacing:.06em;text-transform:uppercase}
+.card p.sum{color:var(--muted);font-size:.92rem}
+.block{display:grid;gap:6px}
+.block .lbl{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+ul.cures{margin:0;padding-left:1.1em;display:grid;gap:4px;font-size:.92rem}
+.clients{font-size:.88rem}
+.links{display:flex;flex-wrap:wrap;gap:8px;padding-top:4px;border-top:1px solid var(--line)}
+.btn{display:inline-flex;align-items:center;gap:6px;text-decoration:none;font-size:.85rem;font-weight:600;padding:7px 11px;border-radius:7px;border:1px solid var(--line);color:var(--ink);background:transparent}
+.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.btn:hover{border-color:var(--accent)}
+.note{background:var(--warn-bg);color:var(--warn);border-radius:8px;padding:10px 12px;font-size:.85rem}
+.price{font-family:var(--mono);font-size:.82rem;font-variant-numeric:tabular-nums}
+footer{color:var(--muted);font-size:.82rem;display:grid;gap:6px;border-top:1px solid var(--line);padding-top:16px}
+code,.mono{font-family:var(--mono);font-size:.85em}
+/* doc pages */
+.doc{max-width:760px;margin:0 auto;display:grid;gap:22px}
+.doc section{display:grid;gap:8px}
+.doc ul,.doc ol{margin:0;padding-left:1.2em;display:grid;gap:5px}
+.back{font-size:.85rem;text-decoration:none}
+.meta{display:flex;flex-wrap:wrap;gap:8px 16px;font-family:var(--mono);font-size:.78rem;color:var(--muted)}
+.tablewrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:.9rem}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:var(--mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.copy{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.copy button{font:inherit;font-size:.8rem;padding:4px 9px;border-radius:6px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style><div class="wrap">
+<header class="top"><span class="eyebrow">TSM Consultz · Pilot portfolio</span>
+<h1>TSM Pilot Portfolio</h1>
+<p class="lede">Ten governed AI pilots hosted and smoke-tested, with four more in build. Every app follows the same path: intake, analysis, unassessed items, independent review, correction, approval, client report and PDF, and a full audit trail.</p>
+<div class="stats"><span><b>10</b> live pilots</span><span><b>5</b> in build</span><span><b>10</b>-step governed workflow</span><span>Synthetic data only</span></div></header>
+<div class="note">Pilot links open behind an access gate. Logins are issued by the owner per tester; they are never published here.</div>
+<section class="grid"><article class="card" id="bpo-services">
+<div class="head"><div class="block"><span class="sector">Flagship: managed services hub</span><h2>BPO Services Platform</h2></div><span class="pill build">In build</span></div>
+<p class="sum">The hub you run for each client company: approved outputs from every TSM app become one delivery queue with SLAs, Sentinel monitoring across apps, a client portal and one monthly service report.</p>
+<div class="block"><span class="lbl">Business pain it cures</span><ul class="cures"><li>One place, one SLA and one report across every service a client buys</li><li>Problems connected across apps before the client feels them</li><li>Clients see delivery status without chasing email</li></ul>
+<span class="lbl">Best-fit clients</span><p class="clients">Mid-size companies outsourcing back-office review: contractors, practices, MSPs, property and hotel operators</p>
+<span class="price">Monthly managed-service pricing per client</span></div>
+<div class="links"><span class="btn" aria-disabled="true">Pilot link on request</span><a class="btn" href="bpo-services-summary.html">Executive summary</a><a class="btn" href="bpo-services-manual.html">Employee manual</a></div>
+</article><article class="card" id="construction">
+<div class="head"><div class="block"><span class="sector">Construction finance</span><h2>Construction BPO</h2></div><span class="pill">Live pilot</span></div>
+<p class="sum">Governed back-office review for general contractors: job-cost imports, pay apps, invoices and lien waivers checked, reviewed and reported.</p>
+<div class="block"><span class="lbl">Business pain it cures</span><ul class="cures"><li>Catch lien-waiver and pay-app mismatches before money goes out</li><li>Fewer month-end job-cost surprises</li><li>Back-office capacity without adding headcount</li></ul>
+<span class="lbl">Best-fit clients</span><p class="clients">Mid-size general contractors (anchor: Ameris Construction), specialty subcontractors, construction CPA firms, CFMA and AGC members</p>
+<span class="price">Pilot $3,500–$4,500 / month</span></div>
+<div class="links"><a class="btn primary" href="https://tsm-construction-pilot-tsm-construction-pilot.up.railway.app" target="_blank" rel="noopener">Open pilot ↗</a><a class="btn" href="construction-summary.html">Executive summary</a><a class="btn" href="construction-manual.html">Employee manual</a></div>
+</article><article class="card" id="l1">
+<div class="head"><div class="block"><span class="sector">IT service management</span><h2>ServiceNow L1 Workbench</h2></div><span class="pill">Live pilot</span></div>
+<p class="sum">Governed L1 triage for MSPs on ServiceNow: drafted category, priority and first response for each incident, approved by an analyst.</p>
+<div class="block"><span class="lbl">Business pain it cures</span><ul class="cures"><li>Shorter L1 handling time per ticket</li><li>Consistent triage across shifts and technicians</li><li>Escalations arrive with the information L2 needs</li></ul>
+<span class="lbl">Best-fit clients</span><p class="clients">Managed service providers running ServiceNow (targets: Iron Systems, AECOM IT services), enterprise service desks</p>
+<span class="price">Pilot $1,250 / month</span></div>
+<div class="links"><a class="btn primary" href="https://tsm-l1-pilot-tsm-l1-pilot.up.railway.app" target="_blank" rel="noopener">Open pilot ↗</a><a class="btn" href="l1-summary.html">Executive summary</a><a class="btn" href="l1-manual.html">Employee manual</a></div>
+</article><article class="card" id="healthcare">
+<div class="head"><div class="block"><span class="sector">Revenue cycle</span><h2>Healthcare Denial Review</h2></div><span class="pill">Live pilot</span></div>
+<p class="sum">Governed denial triage: denials entered or imported, grouped by category and aging, reviewed and published as a client report.</p>
+<div class="block"><span class="lbl">Business pain it cures</span><ul class="cures"><li>Work the denial backlog in priority order</li><li>Fewer missed appeal deadlines</li><li>Consistent documentation for every appeal decision</li></ul>
+<span class="lbl">Best-fit clients</span><p class="clients">Arizona health systems (anchor: HonorHealth), physician groups, revenue-cycle and billing firms</p>
+<span class="price">Pilot pricing on request</span></div>
+<div class="links"><a class="btn primary" href="https://tsm-healthcare-pilot-tsm-healthcare-pilot.up.railway.app" target="_blank" rel="noopener">Open pilot ↗</a><a class="btn" href="healthcare-summary.html">Executive summary</a><a class="btn" href="healthcare-manual.html">Employee manual</a></div>
+</article><article class="card" id="career">
+<div class="head"><div class="block"><span class="sector">Workforce development</span><h2>Career Training</h2></div><span class="pill">Live pilot</span></div>
+<p class="sum">Governed learner readiness tracking: progress reviewed and published as a learner readiness report with matching PDF.</p>
+<div class="block"><span class="lbl">Business pain it cures</span><ul class="cures"><li>See which learners are ready and which need help</li><li>Funder-ready reporting without spreadsheets</li><li>Consistent readiness decisions across staff</li></ul>
+<span class="lbl">Best-fit clients</span><p class="clients">Workforce boards, training providers, community college workforce programs, apprenticeship sponsors</p>
+<span class="price">Pilot pricing on request</span></div>
+<div class="links"><a class="btn primary" href="https://tsm-career-pilot-tsm-career-pilot.up.railway.app" target="_blank" rel="noopener">Open pilot ↗</a><a class="btn" href="career-summary.html">Executive summary</a><a class="btn" href="career-manual.html">Employee manual</a></div>
+</article><article class="card" id="college">
+<div class="head"><div class="block"><span class="sector">Higher education</span><h2>College Command: Financial Aid</h2></div><span class="pill">Live pilot</span></div>
+<p class="sum">Governed financial-aid case handling: intake, missing documents, review and an approved student-facing report.</p>
+<div class="block"><span class="lbl">Business pain it cures</span><ul class="cures"><li>Clear the verification backlog faster</li><li>Students know exactly which documents are missing</li><li>Consistent case decisions across counselors</li></ul>
+<span class="lbl">Best-fit clients</span><p class="clients">Community colleges (e.g. Maricopa County Community Colleges District), small private colleges, aid servicers</p>
+<span class="price">Pilot pricing on request</span></div>
+<div class="links"><a class="btn primary" href="https://tsm-college-pilot-tsm-college-pilot.up.railway.app" target="_blank" rel="noopener">Open pilot ↗</a><a class="btn" href="college-summary.html">Executive summary</a><a class="btn" href="college-manual.html">Employee manual</a></div>
+</article><article class="card" id="legal">
+<div class="head"><div class="block"><span class="sector">Legal operations</span><h2>Legal Preparation</h2></div><span class="pill">Live pilot</span></div>
+<p class="sum">Governed document preparation support: intake, issue checklist, review and an approved client package.</p>
+<div class="block"><span class="lbl">Business pain it cures</span><ul class="cures"><li>Less time assembling routine document packages</li><li>Consistent checklists across matters</li><li>Clean audit of who reviewed what</li></ul>
+<span class="lbl">Best-fit clients</span><p class="clients">Small and mid-size law firms, construction contract teams, title and escrow offices</p>
+<span class="price">Pilot pricing on request</span></div>
+<div class="links"><a class="btn primary" href="https://tsm-legal-pilot-tsm-legal-pilot.up.railway.app" target="_blank" rel="noopener">Open pilot ↗</a><a class="btn" href="legal-summary.html">Executive summary</a><a class="btn" href="legal-manual.html">Employee manual</a></div>
+</article><article class="card" id="real-estate">
+<div class="head"><div class="block"><span class="sector">Real estate operations</span><h2>Real Estate</h2></div><span class="pill">Live pilot</span></div>
+<p class="sum">Governed transaction-file review: intake, analysis, review and an approved client report for brokerages and coordinators.</p>
+<div class="block"><span class="lbl">Business pain it cures</span><ul class="cures"><li>Catch incomplete transaction files before closing</li><li>Consistent file checklists across agents</li><li>A clear record of review and approval</li></ul>
+<span class="lbl">Best-fit clients</span><p class="clients">Residential and commercial brokerages, transaction coordinators, property managers</p>
+<span class="price">Pilot pricing on request</span></div>
+<div class="links"><a class="btn primary" href="https://tsm-real-estate-pilot-tsm-real-estate-pilot.up.railway.app" target="_blank" rel="noopener">Open pilot ↗</a><a class="btn" href="real-estate-summary.html">Executive summary</a><a class="btn" href="real-estate-manual.html">Employee manual</a></div>
+</article><article class="card" id="music">
+<div class="head"><div class="block"><span class="sector">Creative education</span><h2>Music Song Builder</h2></div><span class="pill">Live pilot</span></div>
+<p class="sum">A songwriting workspace with a co-writer by the artist&#x27;s side: an 8-step wizard, three ideas at every step to keep, edit or replace, the song building live on screen, encouragement after each step, and a printable Take Sheet for the first recording.</p>
+<div class="block"><span class="lbl">Business pain it cures</span><ul class="cures"><li>New artists stop staring at a blank page</li><li>Confidence grows because every kept line is the artist&#x27;s choice</li><li>Students arrive at the studio with a finished draft ready to record</li></ul>
+<span class="lbl">Best-fit clients</span><p class="clients">Music schools, recording studios, artist-development programs, youth music programs, independent artists</p>
+<span class="price">Pilot pricing on request</span></div>
+<div class="links"><a class="btn primary" href="https://tsm-music-synthetic-preview-tsm-music-pilot.up.railway.app" target="_blank" rel="noopener">Open pilot ↗</a><a class="btn" href="music-summary.html">Executive summary</a><a class="btn" href="music-manual.html">Employee manual</a></div>
+</article><article class="card" id="insurance">
+<div class="head"><div class="block"><span class="sector">Insurance and risk</span><h2>Insurance COI Review</h2></div><span class="pill">Live pilot</span></div>
+<p class="sum">Helps contractor compliance and risk teams review certificates of insurance, flag missing or expired documentation, and see which vendors need follow-up.</p>
+<div class="block"><span class="lbl">Business pain it cures</span><ul class="cures"><li>No subcontractor on site with an expired or short certificate</li><li>Missing endorsements caught before work starts</li><li>One review record per subcontractor for audits</li></ul>
+<span class="lbl">Best-fit clients</span><p class="clients">General contractors and their risk managers, insurance agencies serving contractors, property managers vetting vendors</p>
+<span class="price">Pilot pricing on request</span></div>
+<div class="links"><a class="btn primary" href="https://tsm-insurance-coi-pilot-tsm-insurance-pilot.up.railway.app" target="_blank" rel="noopener">Open pilot ↗</a><a class="btn" href="insurance-summary.html">Executive summary</a><a class="btn" href="insurance-manual.html">Employee manual</a></div>
+</article><article class="card" id="pm-copilot">
+<div class="head"><div class="block"><span class="sector">Property management</span><h2>PM Copilot</h2></div><span class="pill">Live pilot</span></div>
+<p class="sum">Helps property managers and portfolio operators spot overdue maintenance, assign a vendor and due date, and track the work across properties.</p>
+<div class="block"><span class="lbl">Business pain it cures</span><ul class="cures"><li>No maintenance request slips past its due date</li><li>Every open job has a named vendor and deadline</li><li>One view of work across the whole portfolio</li></ul>
+<span class="lbl">Best-fit clients</span><p class="clients">Property management companies, multifamily and commercial portfolio operators, HOA managers</p>
+<span class="price">Pilot pricing on request</span></div>
+<div class="links"><a class="btn primary" href="https://tsm-pm-copilot-pilot-tsm-pm-copilot-pilot.up.railway.app" target="_blank" rel="noopener">Open pilot ↗</a><a class="btn" href="pm-copilot-summary.html">Executive summary</a><a class="btn" href="pm-copilot-manual.html">Employee manual</a></div>
+</article><article class="card" id="hotelops">
+<div class="head"><div class="block"><span class="sector">Hospitality operations</span><h2>HotelOps</h2></div><span class="pill build">In build</span></div>
+<p class="sum">Housekeeping and maintenance work orders across every room: severity-based SLAs, assignment, resolution and a full audit trail for hotel operations teams.</p>
+<div class="block"><span class="lbl">Business pain it cures</span><ul class="cures"><li>No out-of-order room sits unnoticed</li><li>SLA breaches seen before guests feel them</li><li>One record of who fixed what, and when</li></ul>
+<span class="lbl">Best-fit clients</span><p class="clients">Hotel general managers and operations directors, small hotel groups, hospitality management companies</p>
+<span class="price">Pilot pricing on request</span></div>
+<div class="links"><span class="btn" aria-disabled="true">Pilot link on request</span><a class="btn" href="hotelops-summary.html">Executive summary</a><a class="btn" href="hotelops-manual.html">Employee manual</a></div>
+</article><article class="card" id="hc-office-manager">
+<div class="head"><div class="block"><span class="sector">Medical practice operations</span><h2>Healthcare Office Manager</h2></div><span class="pill build">In build</span></div>
+<p class="sum">Front-desk document intake and routing for medical practices: inbound documents are sorted to the right department, and a person confirms every routing.</p>
+<div class="block"><span class="lbl">Business pain it cures</span><ul class="cures"><li>Documents stop sitting in the wrong inbox</li><li>Front-office staff spend less time sorting paper</li><li>A clear record of where every document went</li></ul>
+<span class="lbl">Best-fit clients</span><p class="clients">Medical practice office managers, revenue-cycle operations leads, multi-location physician groups</p>
+<span class="price">Pilot pricing on request</span></div>
+<div class="links"><span class="btn" aria-disabled="true">Pilot link on request</span><a class="btn" href="hc-office-manager-summary.html">Executive summary</a><a class="btn" href="hc-office-manager-manual.html">Employee manual</a></div>
+</article><article class="card" id="mortgage">
+<div class="head"><div class="block"><span class="sector">Mortgage servicing</span><h2>Mortgage Servicing Compliance</h2></div><span class="pill build">In build</span></div>
+<p class="sum">Compliance-exception triage for mortgage servicing teams: loan-file exceptions are flagged, prioritized and routed for human review.</p>
+<div class="block"><span class="lbl">Business pain it cures</span><ul class="cures"><li>Exceptions worked in order of severity</li><li>Nothing aging silently in the queue</li><li>A defensible QC record for every loan</li></ul>
+<span class="lbl">Best-fit clients</span><p class="clients">Mortgage servicing compliance and QC managers, subservicers, credit unions with servicing portfolios</p>
+<span class="price">Pilot pricing on request</span></div>
+<div class="links"><span class="btn" aria-disabled="true">Pilot link on request</span><a class="btn" href="mortgage-summary.html">Executive summary</a><a class="btn" href="mortgage-manual.html">Employee manual</a></div>
+</article><article class="card" id="schools">
+<div class="head"><div class="block"><span class="sector">K-12 district operations</span><h2>Schools Grants Compliance</h2></div><span class="pill build">In build</span></div>
+<p class="sum">Grant fund-coding and compliance-exception triage for school district business offices, with every flag signed off by staff.</p>
+<div class="block"><span class="lbl">Business pain it cures</span><ul class="cures"><li>Fund-coding errors caught before an audit finds them</li><li>Grant staff see exactly what needs sign-off</li><li>A clean record for every grant review</li></ul>
+<span class="lbl">Best-fit clients</span><p class="clients">District CFOs and business offices, grants compliance directors, charter school networks</p>
+<span class="price">Pilot pricing on request</span></div>
+<div class="links"><span class="btn" aria-disabled="true">Pilot link on request</span><a class="btn" href="schools-summary.html">Executive summary</a><a class="btn" href="schools-manual.html">Employee manual</a></div>
+</article></section>
+<footer><span>Request a pilot: <span class="mono" id="mail">torreyw94@tsmatter.com</span> <button class="btn" style="padding:3px 8px" data-copy="torreyw94@tsmatter.com">Copy</button></span>
+<span>All pilots use synthetic or owner-supplied data. No HIPAA, FERPA, legal-advice, appraisal or licensing determinations are claimed.</span></footer>
+</div><script>
+document.querySelectorAll('[data-copy]').forEach(b=>b.addEventListener('click',()=>{const t=b.getAttribute('data-copy');
+navigator.clipboard.writeText(t).then(()=>{b.textContent='Copied'}).catch(()=>{const r=document.createRange();r.selectNodeContents(b.previousElementSibling);const s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent='Selected'});}));
+</script>
