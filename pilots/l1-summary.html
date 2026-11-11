@@ -1,0 +1,80 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover"><title>ServiceNow L1 Workbench Summary</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;600&family=Sora:wght@600;700&display=swap"><style>
+/* Layout: control-room ledger. One column of record cards; each app is a docket with status, cures, buyers, three exits. */
+:root{
+  --bg:#f3f5f4; --surface:#ffffff; --ink:#14201c; --muted:#5a6a64; --line:#d6dfdb;
+  --accent:#0f6b52; --accent-ink:#ffffff; --brass:#9a6a12; --live:#137a3e; --live-bg:#e2f3e8;
+  --warn-bg:#fbf1dc; --warn:#7a5208;
+  --display:"Sora",ui-sans-serif,system-ui,sans-serif;
+  --body:"IBM Plex Sans",ui-sans-serif,system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0f1614; --surface:#16201d; --ink:#e4ece8; --muted:#97a8a1; --line:#2a3833;
+  --accent:#4fc39b; --accent-ink:#06120e; --brass:#e0b45a; --live:#5fd18f; --live-bg:#163326;
+  --warn-bg:#33280f; --warn:#f0c56a; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f1614; --surface:#16201d; --ink:#e4ece8; --muted:#97a8a1; --line:#2a3833;
+  --accent:#4fc39b; --accent-ink:#06120e; --brass:#e0b45a; --live:#5fd18f; --live-bg:#163326;
+  --warn-bg:#33280f; --warn:#f0c56a; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.55;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 56px}
+.wrap{max-width:1080px;margin:0 auto;display:grid;gap:28px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;letter-spacing:-.01em}
+h1{font-size:clamp(1.7rem,4vw,2.4rem);line-height:1.15}
+h2{font-size:1.25rem}
+h3{font-size:1rem}
+p{margin:0}
+a{color:var(--accent)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--brass);outline-offset:2px}
+.eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.lede{color:var(--muted);max-width:68ch}
+header.top{display:grid;gap:10px}
+.stats{display:flex;flex-wrap:wrap;gap:8px 18px;font-family:var(--mono);font-size:.8rem;color:var(--muted)}
+.stats b{color:var(--ink);font-variant-numeric:tabular-nums}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,330px),1fr));gap:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px;display:grid;gap:12px;grid-template-rows:auto auto 1fr auto;min-width:0}
+.card .head{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.pill{font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:999px;white-space:nowrap;background:var(--live-bg);color:var(--live)}
+.pill.build{background:var(--warn-bg);color:var(--warn)}
+.sector{font-family:var(--mono);font-size:.7rem;color:var(--brass);letter-spacing:.06em;text-transform:uppercase}
+.card p.sum{color:var(--muted);font-size:.92rem}
+.block{display:grid;gap:6px}
+.block .lbl{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+ul.cures{margin:0;padding-left:1.1em;display:grid;gap:4px;font-size:.92rem}
+.clients{font-size:.88rem}
+.links{display:flex;flex-wrap:wrap;gap:8px;padding-top:4px;border-top:1px solid var(--line)}
+.btn{display:inline-flex;align-items:center;gap:6px;text-decoration:none;font-size:.85rem;font-weight:600;padding:7px 11px;border-radius:7px;border:1px solid var(--line);color:var(--ink);background:transparent}
+.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.btn:hover{border-color:var(--accent)}
+.note{background:var(--warn-bg);color:var(--warn);border-radius:8px;padding:10px 12px;font-size:.85rem}
+.price{font-family:var(--mono);font-size:.82rem;font-variant-numeric:tabular-nums}
+footer{color:var(--muted);font-size:.82rem;display:grid;gap:6px;border-top:1px solid var(--line);padding-top:16px}
+code,.mono{font-family:var(--mono);font-size:.85em}
+/* doc pages */
+.doc{max-width:760px;margin:0 auto;display:grid;gap:22px}
+.doc section{display:grid;gap:8px}
+.doc ul,.doc ol{margin:0;padding-left:1.2em;display:grid;gap:5px}
+.back{font-size:.85rem;text-decoration:none}
+.meta{display:flex;flex-wrap:wrap;gap:8px 16px;font-family:var(--mono);font-size:.78rem;color:var(--muted)}
+.tablewrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:.9rem}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:var(--mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.copy{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.copy button{font:inherit;font-size:.8rem;padding:4px 9px;border-radius:6px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style></head><body><div class="doc"><a class="back" href="index.html">← All pilots</a>
+<header class="block"><span class="eyebrow">Executive summary · IT service management</span><h1>ServiceNow L1 Workbench</h1>
+<div class="meta"><span>Status: live pilot</span><span>Pilot $1,250 / month</span></div></header>
+<section><h2>What it does</h2><p>Governed L1 triage for MSPs on ServiceNow: drafted category, priority and first response for each incident, approved by an analyst.</p><ul><li>Incident intake from exported or synthetic tickets</li><li>Drafted categorization, priority and first response</li><li>Technician handoff report and PDF</li><li>Analyst approval before anything is used</li><li>No connection to your live ServiceNow instance during the pilot</li><li>Audit trail of every decision</li></ul></section>
+<section><h2>Business outcomes</h2><ul><li>Shorter L1 handling time per ticket</li><li>Consistent triage across shifts and technicians</li><li>Escalations arrive with the information L2 needs</li></ul></section>
+<section><h2>Who it is for</h2><p>Managed service providers running ServiceNow (targets: Iron Systems, AECOM IT services), enterprise service desks</p></section>
+<section><h2>Safeguards and limits</h2><ul><li>Synthetic or owner-supplied data only during the pilot; no live client records.</li><li>Every result goes through independent human review and approval before a client sees it.</li><li>Full audit trail of intake, review, corrections, approval and publishing.</li><li>Each pilot runs behind an access gate, with separate tenants and role-based accounts.</li><li>No writes to a live ServiceNow instance until the client approves an integration.</li><li>Pilot uses exported or synthetic tickets only.</li></ul></section>
+<section><h2>See it and start a pilot</h2><p>Pilot: <a href="https://tsm-l1-pilot-tsm-l1-pilot.up.railway.app" target="_blank" rel="noopener">tsm-l1-pilot-tsm-l1-pilot.up.railway.app</a></p>
+<p class="copy">Contact: <span class="mono">torreyw94@tsmatter.com</span><button data-copy="torreyw94@tsmatter.com">Copy</button></p></section>
+<a class="back" href="l1-manual.html">Employee manual →</a></div><script>
+document.querySelectorAll('[data-copy]').forEach(b=>b.addEventListener('click',()=>{const t=b.getAttribute('data-copy');
+navigator.clipboard.writeText(t).then(()=>{b.textContent='Copied'}).catch(()=>{const r=document.createRange();r.selectNodeContents(b.previousElementSibling);const s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent='Selected'});}));
+</script></body></html>

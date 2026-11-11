@@ -32,3 +32,7 @@ The folder can be served as ordinary static HTML, JavaScript and CSS with relati
 The home page includes Construction BPO and ServiceNow L1 recordings copied unchanged from `~/wt-hc-legal/html/demo/v2/`, with posters extracted at 12 seconds, two-sentence captions and inline native playback controls. Both are synthetic local walkthroughs; the Healthcare card is coming-soon text only. “Request a pilot” opens a new request in this repository’s GitHub issues because no email or booking destination is configured.
 
 Chromium verification at 1280 and 390 px: 37 checks passed, including real playback advancement for both videos at each width, posters, no horizontal overflow, placeholder limits and existing next-step navigation. Both layouts were visually inspected; zero page errors, console/CSP errors or external asset requests.
+
+## Pilot apps portfolio
+
+`pilots/index.html` lists every TSM Intelligence Platform pilot app (BPO Services first), with capabilities, the business pain points each one cures, best-fit clients, live pilot links, a one-page executive summary (`<slug>-summary.html`) and an employee operating manual (`<slug>-manual.html`). The home page links to it from the intro bar. Pilot links open gated hosted pilots that need separately issued test credentials; all pilot data is synthetic.
