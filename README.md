@@ -29,7 +29,7 @@ The folder can be served as ordinary static HTML, JavaScript and CSS with relati
 
 ## Recorded pilot demos
 
-The home page includes Construction BPO and ServiceNow L1 recordings copied unchanged from `~/wt-hc-legal/html/demo/v2/`, with posters extracted at 12 seconds, two-sentence captions and inline native playback controls. Both are synthetic local walkthroughs; the Healthcare card is coming-soon text only. “Request a pilot” opens a new request in this repository’s GitHub issues because no email or booking destination is configured.
+The home page includes Construction BPO and ServiceNow L1 recordings copied unchanged from `~/wt-hc-legal/html/demo/v2/`, with posters extracted at 12 seconds, two-sentence captions and inline native playback controls. Both are synthetic local walkthroughs; the Healthcare card is coming-soon text only. “Request a pilot” opens an email to torreyw94@tsmatter.com. The public website is https://tsmatter.com (served from `docs/`).
 
 Chromium verification at 1280 and 390 px: 37 checks passed, including real playback advancement for both videos at each width, posters, no horizontal overflow, placeholder limits and existing next-step navigation. Both layouts were visually inspected; zero page errors, console/CSP errors or external asset requests.
 
