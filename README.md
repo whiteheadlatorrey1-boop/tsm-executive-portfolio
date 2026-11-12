@@ -35,12 +35,4 @@ Chromium verification at 1280 and 390 px: 37 checks passed, including real playb
 
 ## Pilot apps portfolio
 
-`pilots/index.html` leads with BPO Services, then every TSM pilot app. Each app has:
-
-- `<slug>.html` marketing page: the problem, immediate business value, capabilities, end-to-end walkthrough, safeguards and the narrated demo video
-- `<slug>-summary.html` one-page executive summary (print / save as PDF)
-- `<slug>-manual.html` employee operating manual
-- `<slug>-script.html` presenter script (timed, copyable) and live-demo guide
-- `videos/<slug>-demo.mp4` (1920×1080, captions burnt in, narrated) and poster
-
-All demo data is synthetic. Narration voice: Piper LibriTTS (CC BY 4.0, http://www.openslr.org/60/), generated locally; no model weights are distributed here.
+The public pilot pages (marketing page, one-page summary and narrated demo for each app) are published with the website at `docs/portfolio/` (https://tsmatter.com/portfolio/). Internal tools (presenter scripts, operating manuals, weekly report, capacity planner, scorecard) are kept private and are not in this repository.
