@@ -29,10 +29,25 @@ The folder can be served as ordinary static HTML, JavaScript and CSS with relati
 
 ## Recorded pilot demos
 
-The home page includes Construction BPO and ServiceNow L1 recordings copied unchanged from `~/wt-hc-legal/html/demo/v2/`, with posters extracted at 12 seconds, two-sentence captions and inline native playback controls. Both are synthetic local walkthroughs; the Healthcare card is coming-soon text only. “Request a pilot” opens an email to torreyw94@tsmatter.com. The public website is https://tsmatter.com (served from `docs/`).
+The home page includes Construction BPO and ServiceNow L1 recordings copied unchanged from `~/wt-hc-legal/html/demo/v2/`, with posters extracted at 12 seconds, two-sentence captions and inline native playback controls. Both are synthetic local walkthroughs; the Healthcare card links to the November 17 verified synthetic workflow and Presenter Companion; its replacement recording remains pending. “Request a pilot” opens an email to torreyw94@tsmatter.com. The public website is https://tsmatter.com (served from `docs/`).
 
 Chromium verification at 1280 and 390 px: 37 checks passed, including real playback advancement for both videos at each width, posters, no horizontal overflow, placeholder limits and existing next-step navigation. Both layouts were visually inspected; zero page errors, console/CSP errors or external asset requests.
 
 ## Pilot apps portfolio
 
 The public pilot pages (marketing page, one-page summary and narrated demo for each app) are published with the website at `docs/portfolio/` (https://tsmatter.com/portfolio/). Internal tools (presenter scripts, operating manuals, weekly report, capacity planner, scorecard) are kept private and are not in this repository.
+
+
+## Healthcare workflow update — November 17, 2026
+
+Status: **Synthetic workflow verified; pilot acceptance pending.** The Healthcare and Office Manager entries, summaries, home/catalog captions, [Presenter Companion](docs/portfolio/healthcare-presenter.html) and [readiness record](docs/portfolio/healthcare-readiness.html) reflect the user-run browser acceptance reviewed in ChatGPT after PR #91 / Fly v3828. Synthetic fixture values are Billing $340 and combined $22,420. The accepted artifact is `tsm-client-package-1794942277839.json`; its bytes and the hosted cleanup backup are not in this repository. See the readiness record for attribution and remaining gaps.
+
+The new Healthcare companion contains only public-safe synthetic presentation guidance. It does not replace or publish the original private presenter scripts, operations manuals or internal planning tools, which remain unavailable here. The existing Healthcare videos/posters are retained unchanged and labeled earlier standalone walkthroughs; they are not recordings of the accepted OM export journey. Replacement capture and timed captions remain pending. No portfolio publication/deployment is performed by this local update.
+
+### Local validation for this update
+
+`node scripts/verify-healthcare-portfolio.cjs` runs local-only checks with Playwright (available through Node module resolution). Set `PORTFOLIO_CHROME` when using an existing Chromium executable and `PORTFOLIO_EVIDENCE_DIR` to choose the screenshot/result directory. No app state is written and live browser acceptance is not re-run.
+
+November 17 validation: **1,404 checks passed** across 10 pages × 1280/390 px × light/dark mode (40 rendered layouts). All checked local links/anchors resolved, no horizontal overflow or uncaught page errors occurred, and existing inline CSS matched source commit `368150ec`. Six actual local portfolio screenshots were captured; desktop Healthcare and mobile Companion captures were visually reviewed. The released Billing, OM Portal and Executive links each returned HTTP 200 (link reachability only, not a signed-in acceptance check). The supplied GitHub Pages URL redirects to `https://tsmatter.com/`, consistent with `docs/CNAME`; Pages serves `main:/docs`.
+
+The automated checks and local portfolio captures are independent of the attributed November 17 user-run app acceptance. Existing videos/posters are byte-unchanged. Fresh signed-in workflow screenshots, a replacement end-to-end recording and synchronized captions still need capture; the original private presenter files were not accessible. The public-safe Healthcare Companion and readiness pages here are newly added and do not claim to update those private files.
