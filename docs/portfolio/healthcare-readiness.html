@@ -1,0 +1,76 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Healthcare readiness and evidence · TSM</title><meta name="description" content="November 17, 2026 synthetic Healthcare workflow acceptance, evidence and presentation guidance."><style>
+:root{--bg:#f6f7fb;--surface:#ffffff;--surface2:#eef1f8;--ink:#121726;--muted:#5b6478;--line:#dde2ee;--a:#5b3fd9;--a-ink:#ffffff;--ok:#0d8a5b;--warn:#9a5b00;--bad:#b42335;
+ --shadow:0 18px 50px rgba(18,23,38,.10);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#070a12;--surface:#0f1524;--surface2:#141c2e;--ink:#eef2fb;--muted:#97a3bd;--line:#223049;--a-ink:#05070d;--ok:#2ee59d;--warn:#ffb547;--bad:#ff8a8a;--shadow:0 30px 80px rgba(0,0,0,.45);color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#070a12;--surface:#0f1524;--surface2:#141c2e;--ink:#eef2fb;--muted:#97a3bd;--line:#223049;--a-ink:#05070d;--ok:#2ee59d;--warn:#ffb547;--bad:#ff8a8a;--shadow:0 30px 80px rgba(0,0,0,.45);color-scheme:dark}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+a{color:var(--a)}a:focus-visible,button:focus-visible,video:focus-visible{outline:3px solid var(--a);outline-offset:3px}
+.wrap{max-width:1160px;margin:0 auto;padding:0 max(16px,env(safe-area-inset-left))}
+.nav{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:18px 0;font-size:.85rem;color:var(--muted)}
+.nav a{text-decoration:none;color:var(--muted)}.nav b{color:var(--ink)}
+.brand{display:flex;gap:10px;align-items:center;font-weight:700;letter-spacing:.08em}
+.mark{width:30px;height:30px;border-radius:9px;background:var(--a);color:var(--a-ink);display:grid;place-items:center;font-weight:900;font-size:.8rem;letter-spacing:0}
+h1,h2,h3{line-height:1.12;letter-spacing:-.02em;margin:0;text-wrap:balance}
+h1{font-size:clamp(2rem,5.2vw,3.6rem);font-weight:850}
+h2{font-size:clamp(1.4rem,3vw,2rem);font-weight:800}
+h3{font-size:1.05rem;font-weight:750}
+p{margin:0}
+.eyebrow{font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--a)}
+.lede{font-size:clamp(1.02rem,2vw,1.2rem);color:var(--muted);max-width:62ch}
+.hero{display:grid;gap:18px;padding:34px 0 26px}
+.ctas{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
+.btn{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:700;font-size:.92rem;padding:11px 16px;border-radius:10px;border:1px solid var(--line);color:var(--ink);background:var(--surface)}
+.btn.primary{background:var(--a);border-color:var(--a);color:var(--a-ink)}
+.btn:hover{border-color:var(--a)}
+.btn.sm{font-size:.82rem;padding:8px 12px}
+.video{position:relative;border-radius:18px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow);background:#070a12;aspect-ratio:16/9}
+.video video{display:block;width:100%;height:100%}
+.vmeta{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:.82rem;color:var(--muted);margin-top:10px}
+section{padding:34px 0;border-top:1px solid var(--line);display:grid;gap:18px}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:14px}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;display:grid;gap:8px;align-content:start}
+.box .n{font-size:.72rem;letter-spacing:.16em;font-weight:800;color:var(--muted)}
+.box.bad{border-left:4px solid var(--bad)}.box.bad .n{color:var(--bad)}
+.box.good{border-left:4px solid var(--a)}.box.good .n{color:var(--a)}
+ul.ticks{list-style:none;padding:0;margin:0;display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))}
+ul.ticks li{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px 12px 44px;position:relative}
+ul.ticks li::before{content:'✓';position:absolute;left:14px;top:11px;width:20px;height:20px;border-radius:6px;display:grid;place-items:center;font-size:.75rem;font-weight:900;background:color-mix(in srgb,var(--a) 18%,transparent);color:var(--a)}
+ol.steps{list-style:none;margin:0;padding:0;display:grid;gap:10px;counter-reset:s}
+ol.steps li{counter-increment:s;display:grid;grid-template-columns:40px 1fr;gap:14px;align-items:start;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px}
+ol.steps li::before{content:counter(s);width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:var(--a);color:var(--a-ink);font-weight:850}
+.role{display:inline-block;font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:2px}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:18px;align-items:start}
+.kv{display:grid;gap:8px}.kv div{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid var(--line);font-size:.92rem}.kv b{text-align:right}
+.note{background:var(--surface2);border:1px solid var(--line);border-radius:12px;padding:14px 16px;font-size:.9rem;color:var(--muted)}
+.tag{display:inline-block;font-size:.7rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:4px 9px;border-radius:999px;background:color-mix(in srgb,var(--ok) 16%,transparent);color:var(--ok)}
+.tag.build{background:color-mix(in srgb,var(--warn) 16%,transparent);color:var(--warn)}
+footer{padding:30px 0 50px;color:var(--muted);font-size:.82rem;border-top:1px solid var(--line);display:grid;gap:6px}
+/* index */
+.feature{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:24px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:22px;box-shadow:var(--shadow)}
+.apps{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,330px),1fr));gap:16px}
+.app{background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:grid;grid-template-rows:auto 1fr;min-width:0}
+.app img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;background:#070a12}
+.app .in{padding:16px;display:grid;gap:10px;align-content:start}
+.app .sector{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;font-weight:800;color:var(--muted)}
+.app p{font-size:.92rem;color:var(--muted)}
+.app .links{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.thumb{position:relative;display:block}.thumb::after{content:'▶';position:absolute;inset:auto auto 12px 12px;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:rgba(5,7,13,.75);color:#fff;font-size:.9rem;padding-left:3px}
+.livegrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,250px),1fr));gap:10px}
+.live{display:flex;justify-content:space-between;align-items:center;gap:12px;text-decoration:none;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;min-width:0}
+.live:hover{border-color:var(--a)}.live b{display:block}.live small{display:block;color:var(--muted);font-size:.78rem;overflow-wrap:anywhere}.live span:last-child{color:var(--a);font-weight:900}
+/* script page */
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:.9rem;min-width:620px}
+th,td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+td.t{font-variant-numeric:tabular-nums;color:var(--muted);white-space:nowrap}
+.copy{font:inherit;font-size:.8rem;font-weight:700;padding:7px 11px;border-radius:8px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+/* print: summary is a one-pager */
+@media print{:root{--bg:#fff;--surface:#fff;--ink:#000;--muted:#333;--line:#ccc}.nav,.ctas,.noprint,video{display:none!important}body{font-size:11.5px}section{padding:12px 0}.hero{padding:6px 0}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style><style>:root{--a:#10b981}@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--a:color-mix(in srgb,#10b981 78%,#000)}}</style></head>
+<body><div class="wrap"><nav class="nav"><a class="brand" href="index.html"><span class="mark" aria-hidden="true">T</span><span><b>TSM</b> Intelligence Platform</span></a><a href="healthcare.html">Healthcare</a></nav><main style="overflow-wrap:anywhere"><header class="hero"><div class="eyebrow">Healthcare · November 17, 2026</div><h1>Healthcare readiness and evidence</h1><p class="note" data-healthcare-status>Synthetic workflow verified; pilot acceptance pending.</p></header><section><h2>User-run browser acceptance reviewed in ChatGPT</h2><p>User-run browser acceptance reviewed in ChatGPT on November 17, 2026, after PR #91 / Fly v3828. This is distinct from automated regression checks.</p><p>The accepted synthetic fixture showed $22,420 total in both OM and Executive, with Billing exposure of $340. After a fresh OM escalation following PR #91 / Fly v3828, the downloaded package preserved <code>sample:true</code>, calculation basis lines and all 11 node summaries. Billing <code>claimIds</code> contained <code>HC-CLM-77412</code>; <code>documentIds</code> contained <code>doc-cb8a6600-n0</code>.</p><p>Accepted artifact: <code>tsm-client-package-<wbr>1794942277839.json</code>. The user reports the JSON was independently inspected by ChatGPT on November 17. The file is not available in this checkout; the current portfolio edit does not independently re-inspect it.</p><p>The inaccurate “accuracy 42%” summary was removed and unsupported confidence became <code>null</code>. Metadata quality remains distinct from measured accuracy.</p><p>The exact older unkeyed synthetic Billing duplicate was backed up and removed on Fly. The retained entry and corrected amounts were checked afterward; repeat relay was checked. This hosted-state history is attributed to the user-run acceptance, not inferred from code or local automated tests.</p></section>
+<section><h2>Source and deployment evidence</h2><ul class="ticks"><li><a href="https://github.com/administrator2016/tsm-apps/pull/90">PR #90</a>: merged 0016e86d; OM aggregate and source evidence mapped to client export.</li><li><a href="https://github.com/administrator2016/tsm-apps/pull/91">PR #91</a>: merged 5d1c1f78, containing 5163772a and regression follow-up 5224f4e8; identifier preservation, quality/confidence corrections and historical metric labels.</li><li>Fly release v3828 deployed to tsm-shell. The saved release verification confirmed a healthy machine and served executive HTML / OM JavaScript matching merged source. Browser export acceptance followed deployment, per the attributed acceptance above.</li><li><a href="https://github.com/administrator2016/tsm-apps/blob/5d1c1f78/tests/unit/hc-client-export.test.cjs">Automated export regression</a>: fixture JSON, identifier retention and confidence/quality labels. The release checks passed 196 HC tests, 2 executive-page tests and JavaScript syntax checks. Local automated checks are distinct from manual browser acceptance.</li></ul></section>
+<section><h2>Remaining gaps</h2><ul class="ticks"><li>Historical case duplication beyond the exact older unkeyed entry removed during the accepted fixture cleanup.</li><li>Broader pilot acceptance, including owner-agreed acceptance criteria; synthetic workflow verification does not grant production approval.</li><li>Replacement Billing → OM → Executive → downloaded-package recording, screenshots and timed captions reflecting the released UI. Existing Healthcare and Office Manager videos remain labeled earlier standalone walkthroughs.</li><li>Preserve the accepted JSON, dated manual acceptance evidence and duplicate backup in their existing evidence store. They are not copied or linked as if available in this public repository.</li></ul><p><a href="healthcare-presenter.html">Presenter Companion and replacement-recording transcript</a></p></section><footer><p>Synthetic demonstration only. No production financial results or broader pilot acceptance are claimed.</p><p><a href="healthcare.html#verified-workflow">Healthcare workflow</a> · <a href="index.html">Pilot portfolio</a></p></footer></main></div></body></html>
