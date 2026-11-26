@@ -51,7 +51,7 @@ footer{padding:30px 0 50px;color:var(--muted);font-size:.82rem;border-top:1px so
 .feature{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:24px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:22px;box-shadow:var(--shadow)}
 .apps{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,330px),1fr));gap:16px}
 .app{background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:grid;grid-template-rows:auto 1fr;min-width:0}
-.app img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;background:#070a12}
+.app img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;background:#070a12}
 .app .in{padding:16px;display:grid;gap:10px;align-content:start}
 .app .sector{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;font-weight:800;color:var(--muted)}
 .app p{font-size:.92rem;color:var(--muted)}
@@ -87,9 +87,9 @@ td.t{font-variant-numeric:tabular-nums;color:var(--muted);white-space:nowrap}
 <section><div class="eyebrow">How it works, end to end</div><h2>A walkthrough of the daily flow</h2><ol class="steps"><li><div><span class="role">Manager</span><h3>New requests</h3><p>Log new maintenance requests by property.</p></div></li><li><div><span class="role">Manager</span><h3>Overdue first</h3><p>Review the overdue list first.</p></div></li><li><div><span class="role">Manager</span><h3>Assign</h3><p>Assign a vendor and due date to every open job.</p></div></li><li><div><span class="role">Manager</span><h3>Vendor updates</h3><p>Update status as vendors report back.</p></div></li><li><div><span class="role">Manager</span><h3>Weekly report</h3><p>Submit the weekly portfolio report for review.</p></div></li><li><div><span class="role">Approver</span><h3>Publish</h3><p>As approver, publish it and check the PDF.</p></div></li></ol></section>
 <section class="two"><div><div class="eyebrow">Safeguards</div><h2 style="margin-top:8px">People stay in charge</h2>
 <p class="lede" style="margin-top:10px">Every result is reviewed and approved by a person before release. Every change is versioned and every action is on the audit trail.</p></div>
-<div class="box"><span class="n">BOUNDARIES</span><p>Work tracking only; no habitability, legal or code-compliance determinations.</p><p>Synthetic data during the pilot.</p></div></section>
+<div class="box"><span class="n">BOUNDARIES</span><p>Hosted acceptance (11/22-11/24/2026, synthetic work tracking): every check passed, covering sign-in for each role from a real browser with no pop-up loop, the full report workflow, tenant isolation in both directions, client PDF downloads, a per-client login limit, and data kept after a restart.</p><p>Work tracking only; no habitability, legal or code-compliance determinations.</p><p>Synthetic data during the pilot.</p></div></section>
 <section><div class="eyebrow">Go deeper</div><h2>Everything you need to evaluate and run it</h2><div class="ctas"><a class="btn sm primary" href="https://tsm-pm-copilot-pilot-tsm-pm-copilot-pilot.up.railway.app" target="_blank" rel="noopener">Open live app ↗</a><a class="btn sm" href="pm-copilot-summary.html">Executive summary</a></div>
-<div class="kv"><div><span>Pricing</span><b>Pilot pricing on request</b></div><div><span>Status</span><b>Live pilot</b></div></div></section>
+<div class="kv"><div><span>Pricing</span><b>$2 a unit a month, $600 minimum</b></div><div><span>Status</span><b>Live pilot</b></div></div></section>
 <footer><p>All demo data is synthetic. No real client records, outcomes or endorsements are shown. Every pilot keeps people in charge: results are reviewed before release.</p>
 <p>Narration voice: Piper LibriTTS (CC BY 4.0, openslr.org/60). Contact: <a href="mailto:torreyw94@tsmatter.com">torreyw94@tsmatter.com</a></p></footer></div><script>
 document.addEventListener('click',async e=>{const b=e.target.closest('[data-copy]');if(!b)return;
